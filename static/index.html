@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#143f3b">
+  <title>कानून साथी</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,560;7..72,680&family=Noto+Sans+Devanagari:wght@450;600;700&family=Noto+Sans:wght@450;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="top">
+    <p class="eyebrow">Kanoon Saathi</p>
+    <h1 id="headline">बोलिए। पहले रास्ते जानिए।</h1>
+    <p class="lede" id="lede">वकील या पुलिस के पास जाने से पहले, आसान शब्दों में सुनिए कि आपके पास कौन से विकल्प हैं। कागज़ की फ़ोटो भी दिखाइए।</p>
+  </header>
+
+  <main>
+    <section class="sheet" aria-label="language and state">
+      <div class="field">
+        <span id="lang-label">भाषा</span>
+        <div class="langs" id="langs" role="radiogroup" aria-labelledby="lang-label"></div>
+      </div>
+      <label class="field" for="state">
+        <span id="state-label">राज्य</span>
+        <select id="state"></select>
+      </label>
+      <p class="status" id="status"></p>
+    </section>
+
+    <section class="talk">
+      <button class="mic" id="mic" type="button">
+        <span class="mic-ring" aria-hidden="true"></span>
+        <span class="mic-label" id="mic-label">बोलिए</span>
+      </button>
+      <p class="hint" id="hint">बटन दबाएँ, बात कहें, फिर दोबारा दबाएँ।</p>
+      <div class="row">
+        <button class="photo" id="photo" type="button">कागज़ की फ़ोटो</button>
+        <button class="ghost" id="welcome" type="button">पहले सुनिए</button>
+      </div>
+      <input id="file" type="file" accept="image/*" capture="environment" hidden>
+      <div class="examples" id="examples"></div>
+      <label class="write" for="text">
+        <span id="write-label">या यहाँ लिखिए</span>
+        <textarea id="text" rows="3" placeholder="पड़ोसी मेरी ज़मीन पर कब्ज़ा कर रहा है"></textarea>
+      </label>
+      <button class="ask" id="ask" type="button">इसी पर बताइए</button>
+      <p class="error" id="error" hidden></p>
+    </section>
+
+    <section class="answer" id="answer" hidden aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <p id="privacy">आपकी फ़ोटो सेव नहीं होती। बातचीत भी सेव नहीं होती। कानून साथी वकील नहीं है।</p>
+  </footer>
+  <audio id="player" preload="auto"></audio>
+  <script src="/static/app.js"></script>
+</body>
+</html>
