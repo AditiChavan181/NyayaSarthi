@@ -35,7 +35,8 @@ async def transcribe(audio: bytes, filename: str, content_type: str, language: s
     code = language if language in LANGS else "indic-auto"
     headers = {"X-API-Key-ID": _key()}
     files = {"audio_file": (filename or "speech.wav", audio, content_type or "audio/wav")}
-    data = {"model": "prisma-v3.0", "language_code": code, "format": "transcribe"}
+    model_name = os.environ.get("GNANI_STT_MODEL", "prisma-v3.0")
+    data = {"model": model_name, "language_code": code, "format": "transcribe"}
     async with httpx.AsyncClient(timeout=60) as client:
         response = await client.post(STT_URL, headers=headers, files=files, data=data)
     if response.status_code >= 400:
@@ -43,7 +44,7 @@ async def transcribe(audio: bytes, filename: str, content_type: str, language: s
     body = response.json()
     transcript = (body.get("transcript") or "").strip()
     if not transcript:
-        raise RuntimeError("Gnani returned an empty transcript")
+        raise RuntimeError("No speech detected. Please speak closer to the microphone and try again.")
     return {
         "transcript": transcript,
         "detected_language": body.get("detected_language_code") or code,

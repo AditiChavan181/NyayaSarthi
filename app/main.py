@@ -124,14 +124,14 @@ async def document(
     if is_emergency(note):
         return emergency_guide(language)
     if not llm.model_ready():
-        return attach_note(document_without_reader(language), language)
+        return attach_note(document_without_reader(language, note=note.strip()), language)
     encoded = base64.b64encode(data).decode("ascii")
     data_url = f"{content_type};base64,{encoded}"
     data_url = f"data:{data_url}"
     try:
         result = attach_note(await llm.explain_image(data_url, language, state, note.strip()), language)
     except Exception:
-        fallback = document_without_reader(language)
+        fallback = document_without_reader(language, note=note.strip())
         fallback["model_error"] = True
         return attach_note(fallback, language)
     if is_emergency(result.get("spoken", "")):
