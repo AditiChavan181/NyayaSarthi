@@ -374,6 +374,7 @@ let recording = null;
 let slow = false;
 let lastSpoken = "";
 let lastVoice = language;
+let voiceGuidance = localStorage.getItem("ks-voice") === "on";
 
 const player = $("player");
 
@@ -391,10 +392,8 @@ function renderChrome() {
   document.documentElement.lang = uiLang();
   $("headline").textContent = c.headline;
   $("lede").textContent = c.lede;
-  $("lang-label").textContent = c.lang;
   $("state-label").textContent = c.state;
   $("mic-label").textContent = recording ? c.stop : c.mic;
-  $("hint").textContent = c.hint;
   $("photo").textContent = c.photo;
   $("welcome").textContent = c.welcome;
   $("write-label").textContent = c.write;
@@ -411,30 +410,29 @@ function renderChrome() {
     });
     $("examples").appendChild(button);
   });
-  document.querySelectorAll("#langs button").forEach((button) => {
-    button.setAttribute("aria-checked", button.dataset.lang === language ? "true" : "false");
-  });
+  $("language").value = language;
   const voice = status.gnani ? `Gnani · ${status.voice}` : (c.phoneVoice || "Phone voice");
   const model = status.model
     ? (c.canReadPaper || "Can read a paper")
     : (c.noModelKey || "Add a model key to read a photo");
   $("status").textContent = `${voice} · ${model}`;
+  $("voice-toggle").checked = voiceGuidance;
+  $("voice-state").textContent = voiceGuidance ? "On" : "Off";
 }
 
 function fillLanguages() {
-  const box = $("langs");
+  const select = $("language");
   LANGS.forEach(([code, name]) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.role = "radio";
-    button.dataset.lang = code;
-    button.textContent = name;
-    button.addEventListener("click", () => {
-      language = code;
-      localStorage.setItem("ks-lang", code);
-      renderChrome();
-    });
-    box.appendChild(button);
+    const option = document.createElement("option");
+    option.value = code;
+    option.textContent = name;
+    select.appendChild(option);
+  });
+  select.value = language;
+  select.addEventListener("change", () => {
+    language = select.value;
+    localStorage.setItem("ks-lang", language);
+    renderChrome();
   });
 }
 
@@ -485,7 +483,7 @@ async function ask(text) {
     if (!response.ok) throw new Error("The guide could not answer. Please try again.");
     const data = await response.json();
     renderAnswer(data, cleaned);
-    await speak(data.spoken, data.answered_in || language);
+    if (voiceGuidance) await speak(data.spoken, data.answered_in || language);
   } catch (error) {
     showError(error.message);
   } finally {
@@ -765,7 +763,7 @@ async function explainFile(file) {
   }
   const data = await response.json();
   renderAnswer(data, $("text").value.trim());
-  await speak(data.spoken, data.answered_in || language);
+  if (voiceGuidance) await speak(data.spoken, data.answered_in || language);
 }
 
 $("mic").addEventListener("click", () => {
@@ -773,7 +771,27 @@ $("mic").addEventListener("click", () => {
 });
 $("ask").addEventListener("click", () => ask($("text").value));
 $("welcome").addEventListener("click", () => speak(copy().welcomeSpeech, language));
+$("welcome-audio").addEventListener("click", () => speak(copy().welcomeSpeech, language));
 $("photo").addEventListener("click", () => $("file").click());
+$("voice-toggle").addEventListener("change", () => {
+  voiceGuidance = $("voice-toggle").checked;
+  localStorage.setItem("ks-voice", voiceGuidance ? "on" : "off");
+  $("voice-state").textContent = voiceGuidance ? "On" : "Off";
+});
+$("font-toggle").addEventListener("click", () => {
+  const enabled = document.body.classList.toggle("large-text");
+  $("font-toggle").setAttribute("aria-pressed", String(enabled));
+});
+$("contrast-toggle").addEventListener("click", () => {
+  const enabled = document.body.classList.toggle("high-contrast");
+  $("contrast-toggle").setAttribute("aria-pressed", String(enabled));
+});
+document.querySelectorAll(".feature-trigger").forEach((button) => {
+  button.addEventListener("click", () => {
+    $("text").value = button.dataset.prompt;
+    ask(button.dataset.prompt);
+  });
+});
 $("file").addEventListener("change", () => {
   const file = $("file").files[0];
   $("file").value = "";

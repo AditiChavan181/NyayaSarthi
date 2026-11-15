@@ -3,51 +3,172 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#143f3b">
-  <title>कानून साथी</title>
+  <meta name="theme-color" content="#17143b">
+  <title>न्यायसारथी | NyayaSarthi</title>
   <link rel="stylesheet" href="/static/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,560;7..72,680&family=Noto+Sans+Devanagari:wght@450;600;700&family=Noto+Sans:wght@450;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="top">
-    <p class="eyebrow">Kanoon Saathi</p>
-    <h1 id="headline">बोलिए। पहले रास्ते जानिए।</h1>
-    <p class="lede" id="lede">वकील या पुलिस के पास जाने से पहले, आसान शब्दों में सुनिए कि आपके पास कौन से विकल्प हैं। कागज़ की फ़ोटो भी दिखाइए।</p>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="NyayaSarthi home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img">
+          <path d="M32 3 39 22 59 22 43 34 49 54 32 42 15 54 21 34 5 22 25 22Z" fill="currentColor"/>
+          <path d="M32 14v27m-13-15h26M20 26l-7 14h14l-7-14Zm24 0-7 14h14l-7-14ZM27 46h10" fill="none" stroke="#17143b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7"/>
+          <circle cx="32" cy="14" r="3" fill="#17143b"/>
+        </svg>
+      </span>
+      <span class="brand-copy">
+        <strong>न्यायसारथी <span>| NyayaSarthi</span></strong>
+        <small>सबके लिए न्याय, आपकी भाषा में <span>Justice for everyone, in your language.</span></small>
+      </span>
+    </a>
+
+    <div class="header-tools">
+      <label class="language-control" for="language">
+        <span aria-hidden="true">文</span>
+        <select id="language" aria-label="Language"></select>
+      </label>
+      <label class="switch-control" for="voice-toggle">
+        <span class="tool-icon" aria-hidden="true">♫</span>
+        <span class="switch-copy"><strong>Voice guidance</strong><small id="voice-state">Off</small></span>
+        <input id="voice-toggle" type="checkbox">
+        <span class="switch" aria-hidden="true"></span>
+      </label>
+      <div class="accessibility-tools">
+        <span class="tool-icon" aria-hidden="true">Aa</span>
+        <span class="switch-copy"><strong>Accessibility</strong><small>Font size & contrast</small></span>
+        <button id="font-toggle" class="tool-button" type="button" aria-pressed="false" aria-label="Increase font size">A+</button>
+        <button id="contrast-toggle" class="tool-button" type="button" aria-pressed="false" aria-label="Toggle high contrast">◐</button>
+      </div>
+      <a class="help-link" href="tel:15100">
+        <span class="tool-icon" aria-hidden="true">☎</span>
+        <span class="switch-copy"><strong>24/7 help</strong><small>Toll-free · 15100</small></span>
+      </a>
+    </div>
   </header>
 
   <main>
-    <section class="sheet" aria-label="language and state">
-      <div class="field">
-        <span id="lang-label">भाषा</span>
-        <div class="langs" id="langs" role="radiogroup" aria-labelledby="lang-label"></div>
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-copy">
+        <p class="hero-kicker">आपकी बात, आपका अधिकार</p>
+        <h1 id="headline">अपनी भाषा में कानूनी मदद पाएँ — सरल, सुरक्षित और सबके लिए</h1>
+        <p class="lede" id="lede">आसान शब्दों में जानिए कि आपके पास कौन से विकल्प हैं।</p>
       </div>
-      <label class="field" for="state">
-        <span id="state-label">राज्य</span>
-        <select id="state"></select>
-      </label>
-      <p class="status" id="status"></p>
+      <svg class="hero-art" viewBox="0 0 590 225" aria-hidden="true">
+        <circle cx="366" cy="128" r="108" fill="#f3d996"/>
+        <path d="M0 192h590v33H0z" fill="#d9b469"/>
+        <path d="M334 122h89v70h-89z" fill="#c99d5d"/>
+        <path d="m326 122 53-39 53 39Z" fill="#e7c37b"/>
+        <path d="M352 139h14v53h-14zm37 0h14v53h-14z" fill="#f6e5bb"/>
+        <path d="M322 192h109" stroke="#9e7443" stroke-width="5"/>
+        <path d="M432 192v-76h105v76Z" fill="#8d573b"/>
+        <path d="M423 116h122l-14-20h-94z" fill="#bd7145"/>
+        <path d="M438 96v20m24-20v20m24-20v20m24-20v20" stroke="#f4d09a" stroke-width="8"/>
+        <g stroke="#25213d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+          <path d="M72 193v-66q0-24 23-24t23 24v66" fill="#bd633f"/>
+          <path d="M79 110q1-23 17-23t18 23" fill="#d8ae89"/>
+          <path d="M87 130h26m-27 21 26 19m-13-39v47" fill="none"/>
+          <path d="M148 193v-74q0-25 23-25t23 25v74" fill="#d8a13f"/>
+          <path d="M156 105q1-26 16-26t17 26" fill="#6a3b2e"/>
+          <path d="M156 146h40m-30 4v38m24-38v38" fill="none"/>
+          <path d="M217 193v-69q0-23 22-23t22 23v69" fill="#e8ece8"/>
+          <path d="M225 109q1-21 14-21t15 21" fill="#9a6447"/>
+          <path d="M225 141h29m-19 6v39m18-39v39" fill="none"/>
+          <path d="M492 193v-58q0-21 20-21t20 21v58" fill="#546746"/>
+          <path d="M498 121q1-21 14-21t15 21" fill="#b77e51"/>
+          <path d="M498 153h28m-18 2v32m18-32v32" fill="none"/>
+        </g>
+        <path d="M116 174h30l-4 18h-24zm88-13h25v28h-25zm45 8h20v24h-20z" fill="#29314a"/>
+        <path d="M120 178h23m-23 5h20m68-8h14m-14 5h14" stroke="#f7ead0" stroke-width="2"/>
+      </svg>
     </section>
 
-    <section class="talk">
-      <button class="mic" id="mic" type="button">
-        <span class="mic-ring" aria-hidden="true"></span>
-        <span class="mic-label" id="mic-label">बोलिए</span>
-      </button>
-      <p class="hint" id="hint">बटन दबाएँ, बात कहें, फिर दोबारा दबाएँ।</p>
-      <div class="row">
-        <button class="photo" id="photo" type="button">कागज़ की फ़ोटो</button>
-        <button class="ghost" id="welcome" type="button">पहले सुनिए</button>
+    <section class="context-bar" aria-label="Your location and service status">
+      <label class="state-control" for="state"><span aria-hidden="true">⌖</span><span id="state-label">राज्य</span><select id="state"></select></label>
+      <p class="status" id="status" aria-live="polite"></p>
+    </section>
+
+    <section class="feature-grid" aria-label="Get legal help">
+      <article class="feature-card">
+        <div class="feature-icon mic-icon" aria-hidden="true">
+          <svg viewBox="0 0 72 72"><rect x="28" y="12" width="16" height="34" rx="8"/><path d="M21 34v3a15 15 0 0 0 30 0v-3M36 52v9m-9 0h18M17 25l-5 5 5 5m38-10 5 5-5 5M8 20l-8 10 8 10m56-20 8 10-8 10"/></svg>
+        </div>
+        <h2>बोलकर पूछें <span>Talk to Sarthi</span></h2>
+        <p>अपनी भाषा में बोलकर सवाल पूछें और जवाब सुनें।</p>
+        <button class="feature-action" id="mic" type="button"><span class="mic-ring" aria-hidden="true"></span><span id="mic-label">बोलिए</span></button>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon scan-icon" aria-hidden="true">
+          <svg viewBox="0 0 72 72"><path d="M25 10H13a3 3 0 0 0-3 3v12m37-15h12a3 3 0 0 1 3 3v12M10 47v12a3 3 0 0 0 3 3h12m37-15v12a3 3 0 0 1-3 3H47"/><path d="M20 31h32M20 39h32M24 47h24"/></svg>
+        </div>
+        <h2>कागज़ात समझें <span>Simplify Documents</span></h2>
+        <p>बिल, नोटिस और समझौते की फ़ोटो से आसान जानकारी पाएँ।</p>
+        <button class="feature-action" id="photo" type="button">फ़ोटो अपलोड करें <span aria-hidden="true">↗</span></button>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon shield-icon" aria-hidden="true">
+          <svg viewBox="0 0 72 72"><path d="m36 7 23 9v17c0 15-9 25-23 33C22 58 13 48 13 33V16z"/><path d="M36 20v27m-13-18h26M23 29l-7 12h14zm26 0-7 12h14zM29 51h14"/></svg>
+        </div>
+        <h2>अपने अधिकार और सुरक्षा <span>Your Rights &amp; Safety</span></h2>
+        <p>धमकी, काम, ज़मीन या उत्पीड़न से जुड़े सवाल पूछें।</p>
+        <button class="feature-action feature-trigger" type="button" data-prompt="Someone is threatening me or I have a safety concern. What can I do?">जानकारी पाएँ <span aria-hidden="true">→</span></button>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon compass-icon" aria-hidden="true">
+          <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="25"/><circle cx="36" cy="36" r="19"/><path d="m45 25-5 15-13 7 5-15z"/><path d="M36 8v5m0 46v5M8 36h5m46 0h5"/></svg>
+        </div>
+        <h2>सही रास्ता खोजें <span>Finding Your Path</span></h2>
+        <p>अगला कदम चुनें — मध्यस्थता, कानूनी मदद या शिकायत।</p>
+        <button class="feature-action feature-trigger" type="button" data-prompt="I need help finding the right legal next step for my situation.">रास्ता जानें <span aria-hidden="true">→</span></button>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="recent-panel panel">
+        <div class="section-heading">
+          <div><p class="section-kicker">आपकी मदद के लिए</p><h2>हालिया खोज और सलाह <span>/ Recent Actions &amp; Guides</span></h2></div>
+          <button id="welcome" class="text-button" type="button">सारथी से मिलें <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="examples" id="examples" aria-label="Suggested questions"></div>
       </div>
-      <input id="file" type="file" accept="image/*" capture="environment" hidden>
-      <div class="examples" id="examples"></div>
+
+      <aside class="media-panel panel">
+        <div class="section-heading">
+          <div><p class="section-kicker">छोटे और आसान पाठ</p><h2>वीडियो / ऑडियो <span>Learn &amp; Listen</span></h2></div>
+        </div>
+        <div class="resource-grid">
+          <button class="resource-card resource-rent feature-trigger" type="button" data-prompt="I have a question about my rights as a tenant and my rental agreement.">
+            <span class="resource-art" aria-hidden="true"><span class="play-icon">▶</span></span><strong>किरायेदार के अधिकार</strong><small>Tenant Rights</small>
+          </button>
+          <button class="resource-card resource-fraud feature-trigger" type="button" data-prompt="I think I may be facing an online scam. What safe steps can I take?">
+            <span class="resource-art" aria-hidden="true"><span class="play-icon">▶</span></span><strong>ऑनलाइन धोखाधड़ी</strong><small>Online Frauds</small>
+          </button>
+          <button class="resource-card resource-help feature-trigger" type="button" data-prompt="How can I find free legal aid or speak with a legal services authority?">
+            <span class="resource-art" aria-hidden="true"><span class="play-icon">▶</span></span><strong>मुफ़्त कानूनी मदद</strong><small>Free Legal Aid</small>
+          </button>
+          <button class="resource-card resource-notice feature-trigger" type="button" data-prompt="I received a legal notice and need help understanding what it says.">
+            <span class="resource-art" aria-hidden="true"><span class="play-icon">▶</span></span><strong>नोटिस समझें</strong><small>Understand a Notice</small>
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="ask-panel panel" aria-labelledby="write-label">
+      <div class="ask-heading">
+        <span class="ask-spark" aria-hidden="true">✦</span>
+        <div><p class="section-kicker">यहाँ से शुरू करें</p><h2 id="write-label">या यहाँ लिखिए <span>Ask anything</span></h2></div>
+      </div>
       <label class="write" for="text">
-        <span id="write-label">या यहाँ लिखिए</span>
-        <textarea id="text" rows="3" placeholder="पड़ोसी मेरी ज़मीन पर कब्ज़ा कर रहा है"></textarea>
+        <span class="sr-only">अपना सवाल लिखें</span>
+        <textarea id="text" rows="2" placeholder="अपना सवाल लिखें…"></textarea>
       </label>
-      <button class="ask" id="ask" type="button">इसी पर बताइए</button>
-      <p class="error" id="error" hidden></p>
+      <button class="ask" id="ask" type="button"><span aria-hidden="true">➤</span> इसी पर बताइए</button>
+      <button class="welcome-audio" id="welcome-audio" type="button">♫ <span>Click to hear how I can help</span></button>
+      <input id="file" type="file" accept="image/*" capture="environment" hidden>
+      <p class="error" id="error" role="alert" hidden></p>
     </section>
 
     <section class="answer" id="answer" hidden aria-live="polite"></section>
@@ -55,6 +176,7 @@
 
   <footer>
     <p id="privacy">आपकी फ़ोटो सेव नहीं होती। बातचीत भी सेव नहीं होती। कानून साथी वकील नहीं है।</p>
+    <a href="tel:15100">तत्काल मदद के लिए 15100 पर कॉल करें</a>
   </footer>
   <audio id="player" preload="auto"></audio>
   <script src="/static/app.js"></script>
